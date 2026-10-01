@@ -39,7 +39,8 @@ import './styles.css'
 
 const experience = [
   {
-    company: 'Brightideas Information Technology Corporation',
+    company: 'Richer Picture',
+    logo: '/brand-logos/richer-picture.jpg',
     role: 'Full-Stack Developer Intern · Reporting & Data Validation',
     description: 'Built React and TypeScript reporting interfaces with filters, summaries, and XLSX exports; validated API, database, and legacy-system results with Power Query and SQLyog.',
     period: 'Apr–Jul 2026',
@@ -47,6 +48,7 @@ const experience = [
   },
   {
     company: 'Simplevia Technologies Inc.',
+    logo: '/brand-logos/simplevia.jpg',
     role: 'Backend Developer Intern · Service Management Systems',
     description: 'Built three Flask REST systems and consolidated requestor, technician, and service-desk records in MySQL; tested end-to-end consistency across workflows.',
     period: 'Jan–Mar 2026',
@@ -401,9 +403,9 @@ function TechMark({ item }) {
   return <Fallback className="tool-chip__logo" style={style} size={16} weight="fill" aria-hidden="true" />
 }
 
-function CredentialMark({ icon, fallback: Fallback = Certificate, color }) {
+function CredentialMark({ icon, image, fallback: Fallback = Certificate, color }) {
   const style = { color }
-  return <span className="credential-mark" style={style} aria-hidden="true">{icon ? <Icon className="credential-mark__logo" icon={icon} /> : <Fallback className="credential-mark__logo" size={21} weight="fill" />}</span>
+  return <span className="credential-mark" style={style} aria-hidden="true">{image ? <img className="credential-mark__image" src={image} alt="" /> : icon ? <Icon className="credential-mark__logo" icon={icon} /> : <Fallback className="credential-mark__logo" size={21} weight="fill" />}</span>
 }
 
 function ProjectCard({ project }) {
@@ -502,7 +504,7 @@ function HomePage() {
 
         <section id="skills" className="skills-section section-anchor" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>
-          <div className="experience-list">{experience.map((item) => <article className="experience-row" key={item.company}><div><h3>{item.role}</h3><p>{item.company}</p><p className="experience-row__detail">{item.description}</p></div><time dateTime={item.startDate}>{item.period}</time></article>)}</div>
+          <div className="experience-list">{experience.map((item) => <article className="experience-row" key={item.company}><div className="experience-row__identity">{item.logo && <img className="experience-row__logo" src={item.logo} alt="" aria-hidden="true" width="48" height="48" />}<div><h3>{item.role}</h3><p>{item.company}</p><p className="experience-row__detail">{item.description}</p></div></div><time dateTime={item.startDate}>{item.period}</time></article>)}</div>
           <div className="additional-experience">
             <p className="subsection-label">Additional experience</p>
             <div className="experience-list">{additionalExperience.map((item) => <article className="experience-row" key={item.company}><div><h3>{item.role}</h3><p>{item.company}</p><p className="experience-row__detail">{item.description}</p></div><time dateTime={item.startDate}>{item.period}</time></article>)}</div>
@@ -516,7 +518,7 @@ function HomePage() {
             <div className="credentials-grid">
               <article className="credential-card">
                 <div className="credential-card__heading">
-                  <CredentialMark fallback={GraduationCap} color="#1E5AA8" />
+                  <CredentialMark image="/brand-logos/feu-institute-of-technology.jpg" fallback={GraduationCap} color="#1E5AA8" />
                   <div>
                     <p className="credential-card__label">Education</p>
                     <h3>FEU Institute of Technology</h3>

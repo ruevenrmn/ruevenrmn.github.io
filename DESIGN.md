@@ -18,9 +18,9 @@ Folio is the current verified project showcase. The project card links to the pu
 
 Tech Stack chips use locally bundled Simple Icons marks through `@iconify-icons/simple-icons`, tinted with their recognizable brand colors while keeping the labels and chip surfaces restrained. LLaMA 3.3 uses the Meta AI mark. SQL, SQLyog, NLP, and phishing detection use filled semantic fallback icons because they do not have a standalone brand mark in the selected set; Firestore uses the Firebase mark and Power Query uses the Microsoft family mark rather than pretending those products have different logos.
 
-Education and certification cards use locally bundled Python and Cisco marks where available, with semantic GraduationCap and Certificate icons for FEU and PMI where no matching Simple Icons brand mark exists.
+Education and certification cards use locally bundled Python and Cisco marks where available, with the verified FEU Institute of Technology crest and a semantic Certificate icon for PMI. Experience rows use locally bundled Richer Picture and Simplevia marks verified against the current LinkedIn profile.
 
-No personal photo, company logo, or decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page. GitHub remains available as a direct footer link without an embedded activity preview.
+No personal photo or decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page, while the locally bundled company and education marks identify the verified experience and credential entries. GitHub remains available as a direct footer link without an embedded activity preview.
 
 ## Interaction contract
 
