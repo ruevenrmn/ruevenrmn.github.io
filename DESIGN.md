@@ -6,7 +6,7 @@
 - Thesis: show Rueven clearly first, then let experience and technical breadth do the talking.
 - Composition: floating pill navigation, 24px narrow-screen gutters, a narrow Inter reading measure, white canvas, black and soft controls, a blue name highlight, and a compact static personal avatar in the header.
 - Story: intro -> featured work -> other projects -> experience -> tech stack and credentials -> direct contact.
-- Form: ruled experience entries, compact project briefs, grouped rounded tool chips, a split proof-and-story work card, stacked credential cards, and a closing contact CTA.
+- Form: ruled experience entries, compact project briefs, grouped rounded tool chips, an image-first work card with a wide proof stage and concise product summary, stacked credential cards, and a closing contact CTA.
 
 ## Content and provenance
 
@@ -28,7 +28,7 @@ The user-supplied Rueven avatar is locally bundled as the compact header identit
 - The hero leads with a selected-work action and keeps the Resume action secondary.
 - The header keeps a compact static avatar as an identity cue while the hero remains focused on the introduction and primary actions.
 - The Folio project card opens the public landing page in a new tab.
-- The Folio preview uses a muted, looping product walkthrough with `folio-landing-page.png` as its poster and reduced-motion fallback.
+- The Folio preview uses a muted, looping full-frame product walkthrough with `folio-landing-page.png` as its poster and reduced-motion fallback; the summary stays below the media so the product screen is not cropped into a narrow column.
 - Header Contact opens a native details popover with Email, GitHub, and LinkedIn destinations.
 - The closing CTA opens an accessible contact dialog with name, email, subject, and message fields; submitting sends the form through FormSubmit to the portfolio inbox without requiring the visitor to open an email app or log in.
 - Resume opens the local PDF in a new tab.
@@ -41,7 +41,7 @@ Status: ready for the current local portfolio pass after the resume-alignment lo
 Verified on 2026-10-01:
 
 - `npm run build` passes with Vite.
-- The local browser review shows the compact static header avatar, split Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and stacked Education & credentials cards.
+- The local browser review shows the compact static header avatar, image-first Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and stacked Education & credentials cards.
 - The project briefs remain non-clickable because no verified public links were supplied for those resume projects; Folio remains the verified live project action.
 - Header Contact, the selected-work anchor, and the closing contact dialog trigger were checked in the local browser. The FormSubmit delivery path requires a one-time owner email confirmation before it can receive submissions.
 - The supplied current resume was copied into `public/Rueven_Roman_Resume.pdf`, its embedded GitHub URL was corrected to `github.com/ruevenrmn`, and the rendered page remains legible with no clipping or overlap.

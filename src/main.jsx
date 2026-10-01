@@ -69,17 +69,17 @@ const additionalExperience = [
 const projects = [
   {
     title: 'Folio',
-    eyebrow: 'Wallet intelligence workspace',
+    eyebrow: 'Read-only wallet workspace',
     href: 'https://folio-space.vercel.app/',
     preview: {
       video: '/folio-walkthrough.mp4',
       mobileVideo: '/folio-walkthrough-mobile.mp4',
       poster: '/folio-landing-page.png',
     },
-    description: 'A read-only workspace for exploring public wallet activity, assets, and exposure across supported EVM networks.',
+    description: 'Wallet intelligence for exploring public activity, assets, and exposure across supported EVM networks.',
     highlights: [
       'Public showcase and authenticated workspace',
-      'Token, NFT, activity, DeFi, and historical views',
+      'Tokens, NFTs, activity, DeFi, and history',
       'Coverage-aware loading and incomplete-data states',
     ],
     stack: ['React', 'Vite', 'Recharts', 'Worker APIs'],
@@ -423,17 +423,19 @@ function ProjectCard({ project }) {
         </div>
 
         <div className="project-card__body">
-          <div className="project-card__identity">
-            <img className="project-card__mark" src="/folio-mark.svg" alt="" aria-hidden="true" width="48" height="48" />
-            <div>
-              <p className="project-card__eyebrow">{project.eyebrow}</p>
-              <h3>{project.title}</h3>
+          <div className="project-card__overview">
+            <div className="project-card__identity">
+              <img className="project-card__mark" src="/folio-mark.svg" alt="" aria-hidden="true" width="48" height="48" />
+              <div>
+                <p className="project-card__eyebrow">{project.eyebrow}</p>
+                <h3>{project.title}</h3>
+              </div>
             </div>
+            <p className="project-card__description">{project.description}</p>
           </div>
-          <p className="project-card__description">{project.description}</p>
 
           <div className="project-card__details">
-            <p className="project-card__label">What you can explore</p>
+            <p className="project-card__label">Explore the product</p>
             <ul className="project-card__highlights">
               {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
             </ul>
