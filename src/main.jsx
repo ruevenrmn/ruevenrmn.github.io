@@ -516,7 +516,7 @@ function HomePage() {
           <div className="credentials-block" aria-labelledby="credentials-title">
             <h2 id="credentials-title">Education & credentials</h2>
             <div className="credentials-grid">
-              <article className="credential-card">
+              <article className="credential-card credential-card--education">
                 <div className="credential-card__heading">
                   <CredentialMark image="/brand-logos/feu-institute-of-technology.jpg" fallback={GraduationCap} color="#1E5AA8" />
                   <div>
@@ -524,13 +524,15 @@ function HomePage() {
                     <h3>FEU Institute of Technology</h3>
                   </div>
                 </div>
-                <p>BS Computer Science, Specialization in Data Science</p>
-                <time dateTime="2026-09">September 2026</time>
+                <div className="credential-card__details">
+                  <p>BS Computer Science, Specialization in Data Science</p>
+                  <time dateTime="2026-09">September 2026</time>
+                </div>
               </article>
-              <article className="credential-card">
+              <article className="credential-card credential-card--certifications">
                 <div className="credential-card__heading">
                   <CredentialMark color="#0074C8" />
-                  <p className="credential-card__label">Certifications</p>
+                  <h3 className="credential-card__section-title">Certifications</h3>
                 </div>
                 <ul className="credential-list">
                   {certifications.map((certification) => <li key={certification.label}><CredentialMark icon={certification.icon} fallback={certification.fallback} color={certification.color} /><span className="credential-list__name">{certification.label}</span><span>{certification.year}</span></li>)}

@@ -1035,9 +1035,9 @@ button {
 
 .credentials-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 .credential-card {
@@ -1045,6 +1045,26 @@ button {
   border: 1px solid var(--border);
   border-radius: 12px;
   background: #fff;
+}
+
+.credential-card--education {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+  align-items: center;
+  gap: 32px;
+}
+
+.credential-card--education .credential-card__details {
+  padding-inline-start: 32px;
+  border-inline-start: 1px solid var(--border);
+}
+
+.credential-card--education .credential-card__details p {
+  max-width: 42ch;
+}
+
+.credential-card--certifications .credential-list {
+  margin-top: 18px;
 }
 
 .credential-card__heading {
@@ -1104,6 +1124,16 @@ button {
   margin-top: 4px;
 }
 
+.credential-card__section-title {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .credential-card p:not(.credential-card__label),
 .credential-card time {
   display: block;
@@ -1126,6 +1156,8 @@ button {
   grid-template-columns: 32px minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
+  min-height: 48px;
+  padding-block: 8px;
   color: var(--text);
   font-size: 14px;
   line-height: 1.45;
@@ -1292,8 +1324,7 @@ button {
     padding-top: 18px;
   }
 
-  .project-brief-list,
-  .credentials-grid {
+  .project-brief-list {
     grid-template-columns: 1fr;
   }
 
@@ -1383,6 +1414,18 @@ button {
 
   .project-brief__header {
     align-items: flex-start;
+  }
+
+  .credential-card--education {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .credential-card--education .credential-card__details {
+    padding-inline-start: 0;
+    padding-block-start: 16px;
+    border-inline-start: 0;
+    border-block-start: 1px solid var(--border);
   }
 
   .credential-list li {

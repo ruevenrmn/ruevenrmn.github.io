@@ -6,7 +6,7 @@
 - Thesis: show Rueven clearly first, then let experience and technical breadth do the talking.
 - Composition: floating pill navigation, 24px narrow-screen gutters, a narrow Inter reading measure, white canvas, black and soft controls, and a blue name highlight.
 - Story: intro -> featured work -> other projects -> experience -> tech stack and credentials -> direct contact.
-- Form: ruled experience entries, compact project briefs, grouped rounded tool chips, a split proof-and-story work card, credential cards, and a closing contact CTA.
+- Form: ruled experience entries, compact project briefs, grouped rounded tool chips, a split proof-and-story work card, stacked credential cards, and a closing contact CTA.
 
 ## Content and provenance
 
