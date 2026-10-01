@@ -20,13 +20,13 @@ Tech Stack chips use locally bundled Simple Icons marks through `@iconify-icons/
 
 Education and certification cards use locally bundled Python and Cisco marks where available, with the verified FEU Institute of Technology crest and a semantic Certificate icon for PMI. Experience rows use locally bundled Richer Picture and Simplevia marks verified against the current LinkedIn profile.
 
-The user-supplied Rueven avatar is locally bundled as the compact header identity cue; no additional decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page, while the locally bundled company and education marks identify the verified experience and credential entries. GitHub remains available as a direct footer link without an embedded activity preview.
+The user-supplied Rueven avatar is locally bundled as a transparent cutout for the compact header identity cue, browser favicon, and Apple touch icon; no additional decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page, while the locally bundled company and education marks identify the verified experience and credential entries. GitHub remains available as a direct footer link without an embedded activity preview.
 
 ## Interaction contract
 
 - About, Work, and Experience links scroll to the corresponding sections and expose the active section with `aria-current`.
 - The hero leads with a selected-work action and keeps the Resume action secondary.
-- The header keeps a compact static avatar as an identity cue while the hero remains focused on the introduction and primary actions.
+- The header keeps a slightly larger static transparent avatar as an identity cue while the hero remains focused on the introduction and primary actions; the same asset is used for the browser icon.
 - The Folio project card opens the public landing page in a new tab.
 - The Folio preview uses a muted, looping full-frame product walkthrough with `folio-landing-page.png` as its poster and reduced-motion fallback; the summary stays below the media so the product screen is not cropped into a narrow column.
 - Header Contact opens a native details popover with Email, GitHub, and LinkedIn destinations.

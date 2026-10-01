@@ -127,23 +127,19 @@ button {
 
 .site-header__avatar {
   display: grid;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
   place-items: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--soft);
+  overflow: visible;
 }
 
 .site-header__avatar img {
   display: block;
-  width: 135%;
+  width: 150%;
   max-width: none;
   height: auto;
-  margin: -17.5%;
-  mix-blend-mode: multiply;
+  margin: -25%;
   user-select: none;
 }
 
@@ -1399,6 +1395,25 @@ button {
     font-size: 14px;
   }
 
+  .site-header__leading {
+    gap: 4px;
+  }
+
+  .primary-nav {
+    gap: 1px;
+    padding: 3px;
+  }
+
+  .primary-nav a {
+    min-height: 36px;
+    padding-inline: 4px;
+    font-size: 13px;
+  }
+
+  .primary-nav a svg {
+    display: none;
+  }
+
   .site-footer {
     align-items: flex-start;
     flex-wrap: wrap;
@@ -1424,10 +1439,10 @@ button {
 
 @media (max-width: 640px) {
   .contact-button {
-    width: 44px;
-    min-height: 44px;
+    width: 40px;
+    min-height: 40px;
     justify-content: center;
-    padding-inline: 10px;
+    padding-inline: 8px;
   }
 
   .contact-button__label {
@@ -1441,6 +1456,12 @@ button {
 }
 
 @media (max-width: 520px) {
+  .site-header__avatar {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
   .hero__actions {
     flex-direction: column;
     align-items: flex-start;
@@ -1524,8 +1545,8 @@ button {
   }
 
   .primary-nav a {
-    padding-inline: 4px;
-    font-size: 13px;
+    padding-inline: 2px;
+    font-size: 12px;
   }
 
   .primary-nav a svg {
