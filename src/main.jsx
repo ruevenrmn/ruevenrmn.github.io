@@ -469,8 +469,156 @@ function ProjectBrief({ project }) {
   )
 }
 
+function CursorAvatar({ trackRef }) {
+  const stageRef = useRef(null)
+  const frameRef = useRef(null)
+
+  useEffect(() => {
+    const stage = stageRef.current
+    const track = trackRef?.current ?? stage
+    const frame = frameRef.current
+    if (!stage || !track || !frame) return undefined
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const coarsePointer = window.matchMedia('(pointer: coarse)')
+    const target = { x: 0, y: 0 }
+    const smooth = { x: 0, y: 0 }
+    let bounds = null
+    let animationFrame = 0
+    let lastTime = performance.now()
+    let isVisible = true
+
+    const clamp = (value) => Math.max(-1, Math.min(1, value))
+
+    const publish = (x, y) => {
+      const translateX = (x * 12).toFixed(2)
+      const translateY = (y * 7).toFixed(2)
+      const rotateX = (y * -5.5).toFixed(2)
+      const rotateY = (x * 8).toFixed(2)
+      frame.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+      stage.style.setProperty('--avatar-pointer-x', `${50 + x * 24}%`)
+      stage.style.setProperty('--avatar-pointer-y', `${42 + y * 18}%`)
+    }
+
+    const cancelFrame = () => {
+      if (!animationFrame) return
+      window.cancelAnimationFrame(animationFrame)
+      animationFrame = 0
+    }
+
+    const render = (now) => {
+      animationFrame = 0
+      if (prefersReducedMotion.matches || coarsePointer.matches || document.hidden || !isVisible) return
+
+      const dt = Math.min((now - lastTime) / 1000, 1 / 30)
+      lastTime = now
+      const alpha = 1 - Math.pow(1 - 0.2, dt * 60)
+      smooth.x += (target.x - smooth.x) * alpha
+      smooth.y += (target.y - smooth.y) * alpha
+
+      const x = Math.round(smooth.x * 1000) / 1000
+      const y = Math.round(smooth.y * 1000) / 1000
+      publish(x, y)
+
+      if (Math.abs(target.x - smooth.x) > 0.001 || Math.abs(target.y - smooth.y) > 0.001) {
+        animationFrame = window.requestAnimationFrame(render)
+      }
+    }
+
+    const start = () => {
+      if (animationFrame || prefersReducedMotion.matches || coarsePointer.matches || document.hidden || !isVisible) return
+      lastTime = performance.now()
+      animationFrame = window.requestAnimationFrame(render)
+    }
+
+    const updateBounds = () => {
+      const rect = track.getBoundingClientRect()
+      bounds = { left: rect.left, top: rect.top, width: rect.width, height: rect.height }
+    }
+
+    const recordPointer = (event) => {
+      if (event.pointerType === 'touch' || coarsePointer.matches || prefersReducedMotion.matches) return
+      if (!bounds) updateBounds()
+      if (!bounds?.width || !bounds?.height) return
+      target.x = clamp(((event.clientX - bounds.left) / bounds.width) * 2 - 1)
+      target.y = clamp(((event.clientY - bounds.top) / bounds.height) * 2 - 1)
+      start()
+    }
+
+    const resetPointer = () => {
+      target.x = 0
+      target.y = 0
+      start()
+    }
+
+    const handleVisibility = () => {
+      if (document.hidden) cancelFrame()
+      else start()
+    }
+
+    const handlePreferenceChange = () => {
+      target.x = 0
+      target.y = 0
+      smooth.x = 0
+      smooth.y = 0
+      cancelFrame()
+      if (prefersReducedMotion.matches || coarsePointer.matches) publish(0.28, -0.12)
+      else publish(0, 0)
+      start()
+    }
+
+    const addMediaListener = (media, listener) => {
+      if (media.addEventListener) {
+        media.addEventListener('change', listener)
+        return () => media.removeEventListener('change', listener)
+      }
+      media.addListener(listener)
+      return () => media.removeListener(listener)
+    }
+
+    const resizeObserver = new ResizeObserver(updateBounds)
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+      if (isVisible) start()
+      else cancelFrame()
+    }, { threshold: 0.05 })
+    const removeReducedMotionListener = addMediaListener(prefersReducedMotion, handlePreferenceChange)
+    const removeCoarsePointerListener = addMediaListener(coarsePointer, handlePreferenceChange)
+
+    updateBounds()
+    resizeObserver.observe(track)
+    visibilityObserver.observe(track)
+    track.addEventListener('pointermove', recordPointer, { passive: true })
+    track.addEventListener('pointerleave', resetPointer)
+    track.addEventListener('pointercancel', resetPointer)
+    document.addEventListener('visibilitychange', handleVisibility)
+    handlePreferenceChange()
+
+    return () => {
+      cancelFrame()
+      resizeObserver.disconnect()
+      visibilityObserver.disconnect()
+      removeReducedMotionListener()
+      removeCoarsePointerListener()
+      track.removeEventListener('pointermove', recordPointer)
+      track.removeEventListener('pointerleave', resetPointer)
+      track.removeEventListener('pointercancel', resetPointer)
+      document.removeEventListener('visibilitychange', handleVisibility)
+    }
+  }, [trackRef])
+
+  return (
+    <div ref={stageRef} className="hero__avatar-stage">
+      <div ref={frameRef} className="hero__avatar-frame">
+        <img className="hero__avatar" src="/rueven-avatar.png" alt="Portrait of Rueven Roman" width="2048" height="2048" draggable="false" />
+      </div>
+    </div>
+  )
+}
+
 function HomePage() {
   const activeSection = useActiveSection()
+  const heroTrackRef = useRef(null)
   const navItems = [{ id: 'about', label: 'About' }, { id: 'projects', label: 'Work' }, { id: 'skills', label: 'Experience' }]
 
   return (
@@ -485,12 +633,13 @@ function HomePage() {
       </header>
 
       <main id="main-content">
-        <section id="about" className="hero section-anchor" aria-labelledby="hero-title">
+        <section ref={heroTrackRef} id="about" className="hero section-anchor" aria-labelledby="hero-title">
           <div className="hero__intro">
             <h1 id="hero-title">Hey! I&apos;m <span className="hero__name">Rueven Roman</span>. I build full-stack products, APIs, and reliable data workflows.</h1>
             <p>I work on interfaces, backend systems, data validation, and QA from prototype to handoff.</p>
             <div className="hero__actions"><a className="button button--dark" href="#projects">View selected work <ArrowDown size={16} weight="bold" aria-hidden="true" /></a><a className="button button--soft" href="/Rueven_Roman_Resume.pdf" target="_blank" rel="noreferrer" aria-label="Open resume PDF in a new tab"><FileArrowDown size={16} aria-hidden="true" /> Resume</a></div>
           </div>
+          <CursorAvatar trackRef={heroTrackRef} />
         </section>
 
         <section id="projects" className="projects-section section-anchor" aria-labelledby="projects-title">
