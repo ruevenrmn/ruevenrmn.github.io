@@ -431,14 +431,15 @@ button {
 }
 
 .project-card__link {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(300px, 0.78fr);
   color: inherit;
   text-decoration: none;
 }
 
 .project-card__preview {
   position: relative;
-  height: 320px;
+  min-height: 360px;
   overflow: hidden;
   background: #050505;
 }
@@ -485,41 +486,26 @@ button {
   transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
 }
 
-.project-card__preview-cta {
-  position: absolute;
-  right: 18px;
-  z-index: 2;
-  bottom: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 11px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
-}
-
 .project-card__body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
-  gap: 40px;
-  padding: 24px;
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+  gap: 0;
+  padding: 28px 26px 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #fbfaff 100%);
 }
 
 .project-card__identity {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .project-card__mark {
-  flex: 0 0 56px;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
 }
 
 .project-card__eyebrow,
@@ -543,16 +529,16 @@ button {
 }
 
 .project-card__description {
-  max-width: 560px;
   margin: 22px 0 0;
   color: var(--muted);
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .project-card__details {
-  padding-left: 28px;
-  border-left: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
 .project-card__label {
@@ -571,8 +557,8 @@ button {
 .project-card__highlights li {
   position: relative;
   padding-left: 15px;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .project-card__highlights li::before {
@@ -590,7 +576,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 18px;
 }
 
 .project-card__stack span {
@@ -601,6 +586,26 @@ button {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
+}
+
+.project-card__footer {
+  display: grid;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.project-card__cta {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--text);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 650;
 }
 
 .skills-section {
@@ -840,23 +845,26 @@ button {
 
   .project-card__preview {
     height: 220px;
+    min-height: 0;
   }
 
   .project-card__body {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 20px;
+    min-height: 0;
+    padding: 22px 20px 20px;
   }
 
   .project-card__details {
-    padding-top: 22px;
-    padding-left: 0;
-    border-top: 1px solid var(--border);
-    border-left: 0;
+    margin-top: 22px;
+    padding-top: 18px;
   }
 
   .project-card__description {
     font-size: 15px;
+  }
+
+  .project-card__footer {
+    margin-top: 24px;
+    padding-top: 18px;
   }
 
   .experience-row {
@@ -1014,11 +1022,11 @@ button {
     transition: transform 140ms var(--ease-out), color 160ms ease;
   }
 
-  .project-card__preview-cta {
+  .project-card__cta {
     transition: transform 160ms var(--ease-out), background-color 180ms ease, box-shadow 180ms ease;
   }
 
-  .project-card__preview-cta svg {
+  .project-card__cta svg {
     transition: transform 160ms var(--ease-out);
   }
 
@@ -1035,7 +1043,7 @@ button {
   .button:active,
   .site-footer a:active,
   .contact-popover__close:active,
-  .project-card__link:active .project-card__preview-cta {
+  .project-card__link:active .project-card__cta {
     transform: translateY(1px) scale(0.96);
   }
 
@@ -1073,12 +1081,7 @@ button {
     transform: translateY(-1px);
   }
 
-  .project-card:hover .project-card__preview-cta {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .project-card:hover .project-card__preview-cta svg {
+  .project-card:hover .project-card__cta svg {
     transform: translate(2px, -2px);
   }
 
@@ -1100,7 +1103,7 @@ button {
   .primary-nav a:active,
   .button:active,
   .site-footer a:active,
-  .project-card__link:active .project-card__preview-cta {
+    .project-card__link:active .project-card__cta {
     transform: translateY(1px) scale(0.96);
   }
 }
@@ -1123,8 +1126,8 @@ button {
   .project-card,
   .landing-preview__image,
   .landing-preview__video,
-  .project-card__preview-cta,
-  .project-card__preview-cta svg {
+  .project-card__cta,
+  .project-card__cta svg {
     animation: none !important;
     transition: none !important;
   }
@@ -1140,8 +1143,8 @@ button {
   .project-card:hover,
   .project-card:hover .landing-preview__image,
   .project-card:hover .landing-preview__video,
-  .project-card:hover .project-card__preview-cta,
-  .project-card:hover .project-card__preview-cta svg {
+  .project-card:hover .project-card__cta,
+  .project-card:hover .project-card__cta svg {
     transform: none !important;
   }
 }

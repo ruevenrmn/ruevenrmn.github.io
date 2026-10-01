@@ -50,7 +50,7 @@ const projects = [
       mobileVideo: '/folio-walkthrough-mobile.mp4',
       poster: '/folio-landing-page.png',
     },
-    description: 'A read-only workspace for understanding public addresses, indexed assets, activity, and exposure across supported EVM networks.',
+    description: 'A read-only workspace for exploring public wallet activity, assets, and exposure across supported EVM networks.',
     highlights: [
       'Public showcase and authenticated workspace',
       'Token, NFT, activity, DeFi, and historical views',
@@ -208,7 +208,6 @@ function ProjectCard({ project }) {
               <source src={project.preview.video} type="video/mp4" />
             </video>
           </div>
-          <span className="project-card__preview-cta">Open landing page <ArrowUpRight size={15} weight="bold" aria-hidden="true" /></span>
         </div>
 
         <div className="project-card__body">
@@ -222,13 +221,17 @@ function ProjectCard({ project }) {
           <p className="project-card__description">{project.description}</p>
 
           <div className="project-card__details">
-            <p className="project-card__label">Explore in the demo</p>
+            <p className="project-card__label">What you can explore</p>
             <ul className="project-card__highlights">
               {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
             </ul>
+          </div>
+
+          <div className="project-card__footer">
             <div className="project-card__stack" aria-label="Project technologies">
               {project.stack.map((item) => <span key={item}>{item}</span>)}
             </div>
+            <span className="project-card__cta">View live product <ArrowUpRight size={15} weight="bold" aria-hidden="true" /></span>
           </div>
         </div>
       </a>
