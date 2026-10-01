@@ -14,7 +14,7 @@ Portfolio copy is grounded in `C:\Users\rueve\Downloads\Rueven_Roman_All_Rounder
 
 The reference site informed the visual rhythm and information architecture. Its exact copy, assets, personal identity, and project content are not reused.
 
-Folio is the current verified project showcase. The project card links to the public landing page and uses a short product walkthrough built from Folio's real read-only landing states; Wallet Tracker and KalasagAI appear as compact resume-backed project briefs. No `/work/:slug` case-study route is exposed.
+Folio is the current verified project showcase. The project card links to the public landing page and uses a short product walkthrough built from Folio's real read-only landing states; KalasagAI appears as a compact resume-backed project brief. No `/work/:slug` case-study route is exposed.
 
 Tech Stack chips use locally bundled Simple Icons marks through `@iconify-icons/simple-icons`, tinted with their recognizable brand colors while keeping the labels and chip surfaces restrained. LLaMA 3.3 uses the Meta AI mark. SQL, SQLyog, NLP, and phishing detection use filled semantic fallback icons because they do not have a standalone brand mark in the selected set; Firestore uses the Firebase mark and Power Query uses the Microsoft family mark rather than pretending those products have different logos.
 
@@ -38,7 +38,7 @@ Status: ready for the current local portfolio pass after the resume-alignment lo
 Verified on 2026-10-01:
 
 - `npm run build` passes with Vite.
-- The local browser review shows the split Folio showcase, compact Wallet Tracker and KalasagAI briefs, richer resume-backed experience entries, expanded stack groups, and Education & credentials cards.
+- The local browser review shows the split Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and Education & credentials cards.
 - The project briefs remain non-clickable because no verified public links were supplied for those resume projects; Folio remains the verified live project action.
 - Header Contact, the selected-work anchor, the closing mailto CTA, and the updated footer GitHub link were checked in the local browser.
 - The supplied current resume was copied into `public/Rueven_Roman_Resume.pdf`, its embedded GitHub URL was corrected to `github.com/ruevenrmn`, and the rendered page remains legible with no clipping or overlap.

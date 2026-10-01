@@ -83,13 +83,6 @@ const projects = [
 
 const secondaryProjects = [
   {
-    title: 'Wallet Tracker',
-    eyebrow: 'Blockchain monitoring & Discord alerts',
-    period: '2024',
-    description: 'A multi-network wallet monitor for balances, token values, NFT holdings, transaction activity, and Discord webhook notifications.',
-    stack: ['JavaScript', 'web3.js', 'Firebase'],
-  },
-  {
     title: 'KalasagAI',
     eyebrow: 'Cybersecurity chatbot',
     period: 'Feb 2025',
