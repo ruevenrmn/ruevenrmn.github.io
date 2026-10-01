@@ -35,9 +35,30 @@ import '@fontsource-variable/inter'
 import './styles.css'
 
 const experience = [
-  { company: 'Brightideas Information Technology Corporation', role: 'Full-Stack Developer Intern', description: 'Built React and TypeScript reporting interfaces and validated filters, exports, and API/database results.', period: 'Apr–Jul 2026', startDate: '2026-04' },
-  { company: 'Simplevia Technologies Inc.', role: 'Backend Developer Intern', description: 'Built three Flask and MySQL service-management systems and reconciled shared data across workflows.', period: 'Jan–Mar 2026', startDate: '2026-01' },
-  { company: 'InnOlympics 2026 Hackathon: KA’AYUDA', role: 'Prototype Developer', description: 'Built and presented a prototype during a two-day hackathon.', period: 'Apr 2026', startDate: '2026-04' },
+  {
+    company: 'Brightideas Information Technology Corporation',
+    role: 'Full-Stack Developer Intern · Reporting & Data Validation',
+    description: 'Built React and TypeScript reporting interfaces with filters, summaries, and XLSX exports; validated API, database, and legacy-system results with Power Query and SQLyog.',
+    period: 'Apr–Jul 2026',
+    startDate: '2026-04',
+  },
+  {
+    company: 'Simplevia Technologies Inc.',
+    role: 'Backend Developer Intern · Service Management Systems',
+    description: 'Built three Flask REST systems and consolidated requestor, technician, and service-desk records in MySQL; tested end-to-end consistency across workflows.',
+    period: 'Jan–Mar 2026',
+    startDate: '2026-01',
+  },
+]
+
+const additionalExperience = [
+  {
+    company: 'InnOlympics 2026 Hackathon · KA’AYUDA',
+    role: 'Prototype Developer',
+    description: 'Built and presented a prototype during a two-day GDG on Campus PLM hackathon, contributing to problem framing and pitch preparation.',
+    period: 'Apr 2026',
+    startDate: '2026-04',
+  },
 ]
 
 const projects = [
@@ -60,6 +81,23 @@ const projects = [
   },
 ]
 
+const secondaryProjects = [
+  {
+    title: 'Wallet Tracker',
+    eyebrow: 'Blockchain monitoring & Discord alerts',
+    period: '2024',
+    description: 'A multi-network wallet monitor for balances, token values, NFT holdings, transaction activity, and Discord webhook notifications.',
+    stack: ['JavaScript', 'web3.js', 'Firebase'],
+  },
+  {
+    title: 'KalasagAI',
+    eyebrow: 'Cybersecurity chatbot',
+    period: 'Feb 2025',
+    description: 'A phishing-analysis chatbot for messages and URLs with a cached domain-reputation database powered by Rasa, LLaMA 3.3, VirusTotal, PHP, and Supabase.',
+    stack: ['Python', 'Rasa', 'LLaMA 3.3', 'VirusTotal'],
+  },
+]
+
 const skillGroups = [
   {
     label: 'Languages & interface',
@@ -68,15 +106,18 @@ const skillGroups = [
       { label: 'PHP', icon: phpIcon, color: '#777BB4' },
       { label: 'JavaScript', icon: javascriptIcon, color: '#F7DF1E' },
       { label: 'TypeScript', icon: typescriptIcon, color: '#3178C6' },
+      { label: 'HTML', fallback: StackSimple, color: '#E34F26' },
+      { label: 'CSS', fallback: StackSimple, color: '#1572B6' },
       { label: 'React', icon: reactIcon, color: '#61DAFB' },
       { label: 'Angular', icon: angularIcon, color: '#DD0031' },
-      { label: 'Flask', icon: flaskIcon, color: '#111111' },
-      { label: 'REST APIs', icon: openapiIcon, color: '#6BA539' },
     ],
   },
   {
-    label: 'Data & platform',
+    label: 'Backend & data',
     items: [
+      { label: 'Flask', icon: flaskIcon, color: '#111111' },
+      { label: 'REST APIs', icon: openapiIcon, color: '#6BA539' },
+      { label: 'JSON', fallback: StackSimple, color: '#5B6B7A' },
       { label: 'SQL', fallback: Database, color: '#5B6B7A' },
       { label: 'MySQL', icon: mysqlIcon, color: '#4479A1' },
       { label: 'SQLyog', fallback: Database, color: '#5B6B7A' },
@@ -84,7 +125,18 @@ const skillGroups = [
       { label: 'Firestore', icon: firebaseIcon, color: '#FFCA28' },
       { label: 'Supabase', icon: supabaseIcon, color: '#3FCF8E' },
       { label: 'Power Query', icon: microsoftIcon, color: '#5E5E5E' },
-      { label: 'web3.js', icon: web3Icon, color: '#F16822' },
+    ],
+  },
+  {
+    label: 'Data & QA',
+    items: [
+      { label: 'Data validation', fallback: ShieldCheck, color: '#D65C5C' },
+      { label: 'Database reconciliation', fallback: Database, color: '#5B6B7A' },
+      { label: 'Reporting', fallback: StackSimple, color: '#5B6B7A' },
+      { label: 'Scenario testing', fallback: ShieldCheck, color: '#D65C5C' },
+      { label: 'API/database validation', fallback: ShieldCheck, color: '#D65C5C' },
+      { label: 'UI issue investigation', fallback: StackSimple, color: '#5B6B7A' },
+      { label: 'Structured debugging', fallback: StackSimple, color: '#5B6B7A' },
     ],
   },
   {
@@ -95,6 +147,17 @@ const skillGroups = [
       { label: 'LLaMA 3.3', icon: metaAiIcon, color: '#0668E1' },
       { label: 'VirusTotal API', icon: virustotalIcon, color: '#394EFF' },
       { label: 'Phishing detection', fallback: ShieldCheck, color: '#D65C5C' },
+    ],
+  },
+  {
+    label: 'Blockchain & delivery',
+    items: [
+      { label: 'web3.js', icon: web3Icon, color: '#F16822' },
+      { label: 'Blockchain APIs', fallback: StackSimple, color: '#5B6B7A' },
+      { label: 'Discord webhooks', fallback: PaperPlaneTilt, color: '#5865F2' },
+      { label: 'Git', fallback: StackSimple, color: '#F05032' },
+      { label: 'GitHub', fallback: GithubLogo, color: '#24292F' },
+      { label: 'Browser developer tools', fallback: StackSimple, color: '#5B6B7A' },
     ],
   },
 ]
@@ -239,6 +302,24 @@ function ProjectCard({ project }) {
   )
 }
 
+function ProjectBrief({ project }) {
+  return (
+    <article className="project-brief">
+      <div className="project-brief__header">
+        <div>
+          <p className="project-brief__eyebrow">{project.eyebrow}</p>
+          <h3>{project.title}</h3>
+        </div>
+        <time>{project.period}</time>
+      </div>
+      <p className="project-brief__description">{project.description}</p>
+      <div className="project-brief__stack" aria-label={`${project.title} technologies`}>
+        {project.stack.map((item) => <span key={item}>{item}</span>)}
+      </div>
+    </article>
+  )
+}
+
 function HomePage() {
   const activeSection = useActiveSection()
   const navItems = [{ id: 'about', label: 'About' }, { id: 'projects', label: 'Work' }, { id: 'skills', label: 'Experience' }]
@@ -266,14 +347,42 @@ function HomePage() {
         <section id="projects" className="projects-section section-anchor" aria-labelledby="projects-title">
           <h2 id="projects-title">Featured work</h2>
           <div className="project-list">{projects.map((project) => <ProjectCard key={project.title} project={project} />)}</div>
+          <div className="secondary-projects" aria-labelledby="other-projects-title">
+            <h3 id="other-projects-title">Other projects</h3>
+            <div className="project-brief-list">{secondaryProjects.map((project) => <ProjectBrief key={project.title} project={project} />)}</div>
+          </div>
         </section>
 
         <section id="skills" className="skills-section section-anchor" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>
           <div className="experience-list">{experience.map((item) => <article className="experience-row" key={item.company}><div><h3>{item.role}</h3><p>{item.company}</p><p className="experience-row__detail">{item.description}</p></div><time dateTime={item.startDate}>{item.period}</time></article>)}</div>
+          <div className="additional-experience">
+            <p className="subsection-label">Additional experience</p>
+            <div className="experience-list">{additionalExperience.map((item) => <article className="experience-row" key={item.company}><div><h3>{item.role}</h3><p>{item.company}</p><p className="experience-row__detail">{item.description}</p></div><time dateTime={item.startDate}>{item.period}</time></article>)}</div>
+          </div>
 
           <h2 className="tools-title">Tech Stack</h2>
           <div className="tool-groups" aria-label="Tools and technologies">{skillGroups.map((group) => <div className="tool-group" key={group.label}><h3 className="tool-group__title">{group.label}</h3><div className="tool-grid">{group.items.map((item) => <span className="tool-chip" key={item.label}><TechMark item={item} /><span>{item.label}</span></span>)}</div></div>)}</div>
+
+          <div className="credentials-block" aria-labelledby="credentials-title">
+            <h2 id="credentials-title">Education & credentials</h2>
+            <div className="credentials-grid">
+              <article className="credential-card">
+                <p className="credential-card__label">Education</p>
+                <h3>FEU Institute of Technology</h3>
+                <p>BS Computer Science, Specialization in Data Science</p>
+                <time dateTime="2026-09">September 2026</time>
+              </article>
+              <article className="credential-card">
+                <p className="credential-card__label">Certifications</p>
+                <ul className="credential-list">
+                  <li>Information Technology Specialist - Python <span>2024</span></li>
+                  <li>Cisco Networking Academy - Introduction to Networks <span>2024</span></li>
+                  <li>PMI Project Management Ready <span>2025</span></li>
+                </ul>
+              </article>
+            </div>
+          </div>
         </section>
 
         <section className="closing-cta" aria-labelledby="closing-cta-title">
