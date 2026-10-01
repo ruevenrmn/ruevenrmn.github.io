@@ -173,9 +173,9 @@ function ContactMenu({ className = '' }) {
             <span className="contact-popover__link-copy"><strong>Email</strong><small>ruevenrmn@gmail.com</small></span>
             <ArrowUpRight className="contact-popover__link-arrow" size={15} aria-hidden="true" />
           </a>
-          <a href="https://github.com/Gustavo-xyz" target="_blank" rel="noreferrer">
+          <a href="https://github.com/ruevenrmn" target="_blank" rel="noreferrer">
             <span className="contact-popover__icon"><GithubLogo size={16} aria-hidden="true" /></span>
-            <span className="contact-popover__link-copy"><strong>GitHub</strong><small>github.com/Gustavo-xyz</small></span>
+            <span className="contact-popover__link-copy"><strong>GitHub</strong><small>github.com/ruevenrmn</small></span>
             <ArrowUpRight className="contact-popover__link-arrow" size={15} aria-hidden="true" />
           </a>
           <a href="https://www.linkedin.com/in/ruevenrmn" target="_blank" rel="noreferrer">
@@ -286,7 +286,7 @@ function HomePage() {
         </section>
       </main>
 
-      <footer className="site-footer"><span>© {new Date().getFullYear()} Rueven Roman</span><div><a href="mailto:ruevenrmn@gmail.com">Email</a><a href="https://github.com/Gustavo-xyz" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ruevenrmn" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} Rueven Roman</span><div><a href="mailto:ruevenrmn@gmail.com">Email</a><a href="https://github.com/ruevenrmn" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ruevenrmn" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
     </div>
   )
 }
