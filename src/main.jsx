@@ -254,6 +254,95 @@ function ContactMenu({ className = '' }) {
   )
 }
 
+function ContactForm() {
+  const dialogRef = useRef(null)
+  const triggerRef = useRef(null)
+  const firstFieldRef = useRef(null)
+
+  const openDialog = () => {
+    const dialog = dialogRef.current
+    if (!dialog || dialog.open) return
+    dialog.showModal()
+    window.requestAnimationFrame(() => firstFieldRef.current?.focus())
+  }
+
+  const closeDialog = () => {
+    if (dialogRef.current?.open) dialogRef.current.close()
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = String(formData.get('name') ?? '').trim()
+    const email = String(formData.get('email') ?? '').trim()
+    const subject = String(formData.get('subject') ?? '').trim()
+    const message = String(formData.get('message') ?? '').trim()
+    const body = [`Name: ${name}`, `Email: ${email}`, '', message].join('\n')
+
+    window.location.href = `mailto:ruevenrmn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }
+
+  return (
+    <>
+      <button ref={triggerRef} className="button button--dark" type="button" aria-haspopup="dialog" onClick={openDialog}>
+        Start a conversation <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+      </button>
+
+      <dialog
+        ref={dialogRef}
+        className="contact-form-dialog"
+        aria-labelledby="contact-form-title"
+        aria-describedby="contact-form-description"
+        onCancel={closeDialog}
+        onClose={() => triggerRef.current?.focus()}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closeDialog()
+        }}
+      >
+        <div className="contact-form-dialog__panel">
+          <div className="contact-form-dialog__header">
+            <div>
+              <p className="contact-form-dialog__eyebrow">Start a conversation</p>
+              <h2 id="contact-form-title">Tell me what you&apos;re working on.</h2>
+            </div>
+            <button className="contact-form-dialog__close" type="button" aria-label="Close contact form" onClick={closeDialog}>
+              <X size={18} weight="bold" aria-hidden="true" />
+            </button>
+          </div>
+
+          <p id="contact-form-description" className="contact-form-dialog__description">Share a little context and your email app will open with the message prepared for Rueven.</p>
+
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="contact-form__fields">
+              <label className="contact-form__field">
+                <span>Your name</span>
+                <input ref={firstFieldRef} name="name" type="text" autoComplete="name" required />
+              </label>
+              <label className="contact-form__field">
+                <span>Email address</span>
+                <input name="email" type="email" autoComplete="email" required />
+              </label>
+              <label className="contact-form__field">
+                <span>Subject</span>
+                <input name="subject" type="text" maxLength="120" required />
+              </label>
+              <label className="contact-form__field">
+                <span>Message</span>
+                <textarea name="message" rows="6" maxLength="2000" placeholder="What would you like to build or discuss?" required />
+              </label>
+            </div>
+
+            <div className="contact-form__actions">
+              <button className="button button--soft" type="button" onClick={closeDialog}>Maybe later</button>
+              <button className="button button--dark" type="submit">Open email draft <ArrowUpRight size={16} weight="bold" aria-hidden="true" /></button>
+            </div>
+          </form>
+        </div>
+      </dialog>
+    </>
+  )
+}
+
 function TechMark({ item }) {
   const style = item.color ? { color: item.color } : undefined
   if (item.icon) return <Icon className="tool-chip__logo" icon={item.icon} style={style} aria-hidden="true" />
@@ -404,7 +493,7 @@ function HomePage() {
             <h2 id="closing-cta-title">Have a product or workflow that needs building?</h2>
             <p>I&apos;m open to software development opportunities and thoughtful collaboration.</p>
           </div>
-          <a className="button button--dark" href="mailto:ruevenrmn@gmail.com">Start a conversation <ArrowUpRight size={16} weight="bold" aria-hidden="true" /></a>
+          <ContactForm />
         </section>
       </main>
 

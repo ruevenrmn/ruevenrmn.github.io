@@ -29,7 +29,7 @@ No personal photo, company logo, or decorative/generated raster artwork is shipp
 - The Folio project card opens the public landing page in a new tab.
 - The Folio preview uses a muted, looping product walkthrough with `folio-landing-page.png` as its poster and reduced-motion fallback.
 - Header Contact opens a native details popover with Email, GitHub, and LinkedIn destinations.
-- The closing CTA provides a direct mailto path after the proof and experience sections.
+- The closing CTA opens an accessible contact dialog with name, email, subject, and message fields; submitting prepares a mailto draft without storing form data.
 - Resume opens the local PDF in a new tab.
 - A skip link is present before the application root and is visually hidden until focused.
 
@@ -42,7 +42,7 @@ Verified on 2026-10-01:
 - `npm run build` passes with Vite.
 - The local browser review shows the split Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and Education & credentials cards.
 - The project briefs remain non-clickable because no verified public links were supplied for those resume projects; Folio remains the verified live project action.
-- Header Contact, the selected-work anchor, the closing mailto CTA, and the updated footer GitHub link were checked in the local browser.
+- Header Contact, the selected-work anchor, the closing contact dialog trigger, and the updated footer GitHub link were checked in the local browser.
 - The supplied current resume was copied into `public/Rueven_Roman_Resume.pdf`, its embedded GitHub URL was corrected to `github.com/ruevenrmn`, and the rendered page remains legible with no clipping or overlap.
 - The Impeccable detector was run once. It fell back to regex matching because optional HTML/CSS parser modules were unavailable, so its empty finding list is an undercount rather than a clean automated audit.
 
