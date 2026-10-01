@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Icon } from '@iconify/react'
 import angularIcon from '@iconify-icons/simple-icons/angular'
+import ciscoIcon from '@iconify-icons/simple-icons/cisco'
 import firebaseIcon from '@iconify-icons/simple-icons/firebase'
 import flaskIcon from '@iconify-icons/simple-icons/flask'
 import javascriptIcon from '@iconify-icons/simple-icons/javascript'
@@ -19,9 +20,11 @@ import virustotalIcon from '@iconify-icons/simple-icons/virustotal'
 import web3Icon from '@iconify-icons/simple-icons/web3dotjs'
 import {
   Brain,
+  Certificate,
   Database,
   EnvelopeSimple,
   FileArrowDown,
+  GraduationCap,
   GithubLogo,
   LinkedinLogo,
   PaperPlaneTilt,
@@ -89,6 +92,12 @@ const secondaryProjects = [
     description: 'A phishing-analysis chatbot for messages and URLs with a cached domain-reputation database powered by Rasa, LLaMA 3.3, VirusTotal, PHP, and Supabase.',
     stack: ['Python', 'Rasa', 'LLaMA 3.3', 'VirusTotal'],
   },
+]
+
+const certifications = [
+  { label: 'Information Technology Specialist - Python', year: '2024', icon: pythonIcon, color: '#3776AB' },
+  { label: 'Cisco Networking Academy - Introduction to Networks', year: '2024', icon: ciscoIcon, color: '#049FD9' },
+  { label: 'PMI Project Management Ready', year: '2025', fallback: Certificate, color: '#0074C8' },
 ]
 
 const skillGroups = [
@@ -252,6 +261,11 @@ function TechMark({ item }) {
   return <Fallback className="tool-chip__logo" style={style} size={16} weight="fill" aria-hidden="true" />
 }
 
+function CredentialMark({ icon, fallback: Fallback = Certificate, color }) {
+  const style = { color }
+  return <span className="credential-mark" style={style} aria-hidden="true">{icon ? <Icon className="credential-mark__logo" icon={icon} /> : <Fallback className="credential-mark__logo" size={21} weight="fill" />}</span>
+}
+
 function ProjectCard({ project }) {
   return (
     <article className="project-card">
@@ -361,17 +375,23 @@ function HomePage() {
             <h2 id="credentials-title">Education & credentials</h2>
             <div className="credentials-grid">
               <article className="credential-card">
-                <p className="credential-card__label">Education</p>
-                <h3>FEU Institute of Technology</h3>
+                <div className="credential-card__heading">
+                  <CredentialMark fallback={GraduationCap} color="#1E5AA8" />
+                  <div>
+                    <p className="credential-card__label">Education</p>
+                    <h3>FEU Institute of Technology</h3>
+                  </div>
+                </div>
                 <p>BS Computer Science, Specialization in Data Science</p>
                 <time dateTime="2026-09">September 2026</time>
               </article>
               <article className="credential-card">
-                <p className="credential-card__label">Certifications</p>
+                <div className="credential-card__heading">
+                  <CredentialMark color="#0074C8" />
+                  <p className="credential-card__label">Certifications</p>
+                </div>
                 <ul className="credential-list">
-                  <li>Information Technology Specialist - Python <span>2024</span></li>
-                  <li>Cisco Networking Academy - Introduction to Networks <span>2024</span></li>
-                  <li>PMI Project Management Ready <span>2025</span></li>
+                  {certifications.map((certification) => <li key={certification.label}><CredentialMark icon={certification.icon} fallback={certification.fallback} color={certification.color} /><span className="credential-list__name">{certification.label}</span><span>{certification.year}</span></li>)}
                 </ul>
               </article>
             </div>
