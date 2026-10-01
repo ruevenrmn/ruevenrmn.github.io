@@ -115,10 +115,39 @@ button {
   margin-inline: auto;
 }
 
-.primary-nav {
+.site-header__leading {
   position: absolute;
   top: 10px;
   left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.site-header__avatar {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.site-header__avatar img {
+  display: block;
+  width: 135%;
+  max-width: none;
+  height: auto;
+  margin: -17.5%;
+  mix-blend-mode: multiply;
+  user-select: none;
+}
+
+.primary-nav {
   display: flex;
   gap: 2px;
   padding: 4px;
@@ -506,75 +535,11 @@ button {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
-  align-items: center;
-  gap: 24px;
   padding-top: 88px;
 }
 
 .hero__intro {
-  position: relative;
-  z-index: 2;
   max-width: 600px;
-}
-
-.hero__avatar-stage {
-  position: relative;
-  display: grid;
-  min-height: 360px;
-  place-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  perspective: 900px;
-  touch-action: pan-y;
-}
-
-.hero__avatar-stage::before {
-  position: absolute;
-  inset: 8%;
-  content: "";
-  border-radius: 50%;
-  background: radial-gradient(circle at var(--avatar-pointer-x, 50%) var(--avatar-pointer-y, 42%), rgba(169, 205, 245, 0.34), rgba(169, 205, 245, 0) 48%);
-  filter: blur(18px);
-  pointer-events: none;
-}
-
-.hero__avatar-stage::after {
-  position: absolute;
-  bottom: 9%;
-  left: 50%;
-  width: 42%;
-  height: 16px;
-  content: "";
-  border-radius: 50%;
-  background: rgba(20, 20, 20, 0.12);
-  filter: blur(14px);
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.hero__avatar-frame {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  width: min(100%, 420px);
-  aspect-ratio: 1;
-  place-items: center;
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.hero__avatar {
-  display: block;
-  width: 135%;
-  max-width: none;
-  height: auto;
-  margin: -17.5%;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  user-select: none;
 }
 
 .hero h1,
@@ -1350,17 +1315,7 @@ button {
   }
 
   .hero {
-    display: block;
     padding-top: 88px;
-  }
-
-  .hero__avatar-stage {
-    min-height: 300px;
-    margin-top: 36px;
-  }
-
-  .hero__avatar-frame {
-    width: min(100%, 360px);
   }
 
   .hero h1,
@@ -1368,6 +1323,10 @@ button {
     font-size: 24px;
     line-height: 31px;
     letter-spacing: -0.5px;
+  }
+
+  .project-card__link {
+    grid-template-columns: 1fr;
   }
 
   .skills-section {
@@ -1465,15 +1424,6 @@ button {
   .hero__actions {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .hero__avatar-stage {
-    min-height: 250px;
-    margin-top: 28px;
-  }
-
-  .hero__avatar-frame {
-    width: min(100%, 300px);
   }
 
   .button {

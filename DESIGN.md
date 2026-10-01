@@ -4,7 +4,7 @@
 
 - Reference: the compact home rhythm in [Mark Louie Alvarez's portfolio](https://mark.requo.app/).
 - Thesis: show Rueven clearly first, then let experience and technical breadth do the talking.
-- Composition: floating pill navigation, 24px narrow-screen gutters, a narrow Inter reading measure, white canvas, black and soft controls, a blue name highlight, and a cursor-responsive personal avatar in the hero.
+- Composition: floating pill navigation, 24px narrow-screen gutters, a narrow Inter reading measure, white canvas, black and soft controls, a blue name highlight, and a compact static personal avatar in the header.
 - Story: intro -> featured work -> other projects -> experience -> tech stack and credentials -> direct contact.
 - Form: ruled experience entries, compact project briefs, grouped rounded tool chips, a split proof-and-story work card, stacked credential cards, and a closing contact CTA.
 
@@ -20,13 +20,13 @@ Tech Stack chips use locally bundled Simple Icons marks through `@iconify-icons/
 
 Education and certification cards use locally bundled Python and Cisco marks where available, with the verified FEU Institute of Technology crest and a semantic Certificate icon for PMI. Experience rows use locally bundled Richer Picture and Simplevia marks verified against the current LinkedIn profile.
 
-The user-supplied Rueven avatar is locally bundled as the hero identity cue; no additional decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page, while the locally bundled company and education marks identify the verified experience and credential entries. GitHub remains available as a direct footer link without an embedded activity preview.
+The user-supplied Rueven avatar is locally bundled as the compact header identity cue; no additional decorative/generated raster artwork is shipped. The Folio poster and walkthrough are product evidence captured from the actual Folio landing page, while the locally bundled company and education marks identify the verified experience and credential entries. GitHub remains available as a direct footer link without an embedded activity preview.
 
 ## Interaction contract
 
 - About, Work, and Experience links scroll to the corresponding sections and expose the active section with `aria-current`.
 - The hero leads with a selected-work action and keeps the Resume action secondary.
-- The hero avatar follows fine-pointer movement with a shallow 3D tilt and spotlight, then holds a designed still pose for touch and reduced-motion users.
+- The header keeps a compact static avatar as an identity cue while the hero remains focused on the introduction and primary actions.
 - The Folio project card opens the public landing page in a new tab.
 - The Folio preview uses a muted, looping product walkthrough with `folio-landing-page.png` as its poster and reduced-motion fallback.
 - Header Contact opens a native details popover with Email, GitHub, and LinkedIn destinations.
@@ -41,7 +41,7 @@ Status: ready for the current local portfolio pass after the resume-alignment lo
 Verified on 2026-10-01:
 
 - `npm run build` passes with Vite.
-- The local browser review shows the cursor-responsive hero avatar, split Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and stacked Education & credentials cards.
+- The local browser review shows the compact static header avatar, split Folio showcase, a compact KalasagAI brief, richer resume-backed experience entries, expanded stack groups, and stacked Education & credentials cards.
 - The project briefs remain non-clickable because no verified public links were supplied for those resume projects; Folio remains the verified live project action.
 - Header Contact, the selected-work anchor, and the closing contact dialog trigger were checked in the local browser. The FormSubmit delivery path requires a one-time owner email confirmation before it can receive submissions.
 - The supplied current resume was copied into `public/Rueven_Roman_Resume.pdf`, its embedded GitHub URL was corrected to `github.com/ruevenrmn`, and the rendered page remains legible with no clipping or overlap.
