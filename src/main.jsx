@@ -100,6 +100,8 @@ const certifications = [
   { label: 'PMI Project Management Ready', year: '2025', fallback: Certificate, color: '#0074C8' },
 ]
 
+const contactFormEndpoint = 'https://formsubmit.co/ajax/ruevenrmn@gmail.com'
+
 const skillGroups = [
   {
     label: 'Languages & interface',
@@ -258,10 +260,20 @@ function ContactForm() {
   const dialogRef = useRef(null)
   const triggerRef = useRef(null)
   const firstFieldRef = useRef(null)
+  const successButtonRef = useRef(null)
+  const [status, setStatus] = useState('idle')
+  const [statusMessage, setStatusMessage] = useState('')
+
+  useEffect(() => {
+    if (status !== 'success') return
+    window.requestAnimationFrame(() => successButtonRef.current?.focus())
+  }, [status])
 
   const openDialog = () => {
     const dialog = dialogRef.current
     if (!dialog || dialog.open) return
+    setStatus('idle')
+    setStatusMessage('')
     dialog.showModal()
     window.requestAnimationFrame(() => firstFieldRef.current?.focus())
   }
@@ -270,16 +282,46 @@ function ContactForm() {
     if (dialogRef.current?.open) dialogRef.current.close()
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const formData = new FormData(form)
     const name = String(formData.get('name') ?? '').trim()
     const email = String(formData.get('email') ?? '').trim()
     const subject = String(formData.get('subject') ?? '').trim()
     const message = String(formData.get('message') ?? '').trim()
-    const body = [`Name: ${name}`, `Email: ${email}`, '', message].join('\n')
 
-    window.location.href = `mailto:ruevenrmn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setStatus('sending')
+    setStatusMessage('')
+
+    try {
+      const response = await fetch(contactFormEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+          _replyto: email,
+          _subject: `Portfolio inquiry: ${subject}`,
+          _template: 'table',
+        }),
+      })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok || result.success === false) throw new Error('Contact form submission failed')
+
+      form.reset()
+      setStatus('success')
+      setStatusMessage("Message sent. Thank you — I'll get back to you soon.")
+    } catch (error) {
+      console.error(error)
+      setStatus('error')
+      setStatusMessage('Something went wrong while sending. Please try again or use the Email link in the site header.')
+    }
   }
 
   return (
@@ -310,33 +352,42 @@ function ContactForm() {
             </button>
           </div>
 
-          <p id="contact-form-description" className="contact-form-dialog__description">Share a little context and your email app will open with the message prepared for Rueven.</p>
+          <p id="contact-form-description" className="contact-form-dialog__description">No login is needed. Your message will be delivered to Rueven&apos;s inbox through FormSubmit.</p>
+          <p id="contact-form-status" className={['contact-form__status', `contact-form__status--${status}`].join(' ')} role={status === 'error' ? 'alert' : 'status'} aria-live={status === 'error' ? 'assertive' : 'polite'}>{statusMessage}</p>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-form__fields">
-              <label className="contact-form__field">
-                <span>Your name</span>
-                <input ref={firstFieldRef} name="name" type="text" autoComplete="name" required />
-              </label>
-              <label className="contact-form__field">
-                <span>Email address</span>
-                <input name="email" type="email" autoComplete="email" required />
-              </label>
-              <label className="contact-form__field">
-                <span>Subject</span>
-                <input name="subject" type="text" maxLength="120" required />
-              </label>
-              <label className="contact-form__field">
-                <span>Message</span>
-                <textarea name="message" rows="6" maxLength="2000" placeholder="What would you like to build or discuss?" required />
-              </label>
+          {status === 'success' ? (
+            <div className="contact-form__success">
+              <p>Your message is on its way. You can close this window now.</p>
+              <button ref={successButtonRef} className="button button--dark" type="button" onClick={closeDialog}>Done</button>
             </div>
+          ) : (
+            <form className="contact-form" aria-describedby="contact-form-status" onSubmit={handleSubmit}>
+              <div className="contact-form__fields">
+                <label className="contact-form__field">
+                  <span>Your name</span>
+                  <input ref={firstFieldRef} name="name" type="text" autoComplete="name" required />
+                </label>
+                <label className="contact-form__field">
+                  <span>Email address</span>
+                  <input name="email" type="email" autoComplete="email" required />
+                </label>
+                <label className="contact-form__field">
+                  <span>Subject</span>
+                  <input name="subject" type="text" maxLength="120" required />
+                </label>
+                <label className="contact-form__field">
+                  <span>Message</span>
+                  <textarea name="message" rows="6" maxLength="2000" placeholder="What would you like to build or discuss?" required />
+                </label>
+                <input className="contact-form__honeypot" name="_honey" type="text" tabIndex="-1" autoComplete="off" />
+              </div>
 
-            <div className="contact-form__actions">
-              <button className="button button--soft" type="button" onClick={closeDialog}>Maybe later</button>
-              <button className="button button--dark" type="submit">Open email draft <ArrowUpRight size={16} weight="bold" aria-hidden="true" /></button>
-            </div>
-          </form>
+              <div className="contact-form__actions">
+                <button className="button button--soft" type="button" onClick={closeDialog}>Maybe later</button>
+                <button className="button button--dark" type="submit" disabled={status === 'sending'} aria-busy={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'} <ArrowUpRight size={16} weight="bold" aria-hidden="true" /></button>
+              </div>
+            </form>
+          )}
         </div>
       </dialog>
     </>
